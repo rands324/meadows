@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meadowlands Privacy Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #1E2C23;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+               .container {
+            display: flex;
+            flex: 1; /* Allow content to grow */
+            overflow: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            color: black;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background-color: #001e01;
+            display: flex;
+            align-items: center;
+            padding: 40px; /* Increased padding */
+            z-index: 10;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Garamond', serif;
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f3d46d 10%, #ffd700 50%, #f1c04d 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-right: 20px;
+        }
+
+        .menu {
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+            color: white;
+            margin-right: auto;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu a:hover {
+            opacity: 1;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            margin-left: 20px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: white; /* Deep green */
+            color: black;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button.primary {
+            background-color: #f3d46d; /* Gold */
+            color: #001e01; /* Deep green text */
+        }
+
+        .button.primary:hover {
+            background-color: #f3d46d; /* Gold on hover */
+            color: #001e01; /* Deep green text */
+            transform: scale(1.05); /* Slight enlargement on hover */
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+            color: #557a63;
+        }
+
+        .content {
+            margin-top: 130px;
+            padding: 40px;
+            background-color: #ffffff;
+            color: #1E2C23;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 130px auto;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: #1E2C23;
+            margin-bottom: 25px;
+        }
+
+        section h3 {
+            font-size: 2rem;
+            color: #1E2C23;
+            margin-top: 35px;
+            margin-bottom: 20px;
+        }
+
+        section p {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 20px;
+        }
+
+        section ul {
+            margin-left: 25px;
+        }
+
+        section ul li {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 12px;
+        }
+
+         footer {
+            background-color:#001e01;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .footer-logo a {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center; /* Centers the text and image vertically */
+            gap: 10px; /* Space between the image and text */
+        }
+
+        .footer-lines {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-lines .line {
+            height: 1px; /* Thickness of the line */
+            background-color: #f3d46d; /* Line color */
+            margin: 0 auto; /* Centers the line */
+        }
+
+        .footer-lines .long-line {
+            width: 60%; /* Adjust the length of the first line */
+            margin-bottom: 15px; /* Space between the two lines */
+        }
+
+        .footer-lines .short-line {
+            width: 40%; /* Adjust the length of the second line */
+        }
+
+        footer .footer-logo img {
+            width: 300px; /* Set a fixed width for the logo */
+            height: auto; /* Keeps the aspect ratio intact */
+        }
+
+        .footer-lines-below {
+            text-align: center;
+            margin-top: 1px; /* Space between the logo and the line below */
+            margin-bottom: 10px;
+        }
+
+        .footer-lines-below .below-line {
+            height: 1px; /* Thickness of the line */
+            background-color:#f3d46d; /* Line color */
+            width: 25%; /* Adjust the width of the line */
+            margin: 0 auto; /* Centers the line */
+        }
+
+        footer ul {
+            list-style: none;
+            margin-top: 1px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #d9a541;
+        }
+
+        footer p {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* Smooth scroll animation */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+       <div class="left-section">
+      <div class="header">
+        <a href="index.html" class="logo">MEADOWLANDS</a>
+        <nav class="menu">
+          <a href="AboutUs.html">About Us</a>| 
+          <a href="Contacts.html">Contacts</a>| 
+          <a href="Agents.html">Agents</a>
+        </nav>
+        <div class="auth-buttons">
+          <a href="Log In.html" class="button">Log In</a>
+          <a href="Sign Up.html" class="button primary">Sign Up</a>
+        </div>
+      </div>
+	 </div>
+    </header>
+
+<div class="content">
+    <section id="privacy-policy">
+        <h2>Privacy Policy</h2>
+        <p><strong>Effective Date:</strong> December 10, 2024</p>
+        <p>At Meadowlands, we prioritize your privacy and strive to protect your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you use our website or services.</p>
+
+        <h3>1. Information We Collect</h3>
+        <ul>
+            <li><strong>Personal Information:</strong> Includes name, email, phone number, and other contact details provided voluntarily.</li>
+            <li><strong>Usage Data:</strong> Information about how you interact with our website, including IP addresses, browser type, and pages visited.</li>
+            <li><strong>Cookies:</strong> Small text files stored on your device to enhance your browsing experience.</li>
+        </ul>
+
+        <h3>2. How We Use Your Information</h3>
+        <p>We use your data to provide and improve our services, communicate with you, and comply with legal obligations. Specific uses include:</p>
+        <ul>
+            <li>Responding to inquiries and requests.</li>
+            <li>Sending updates about services and promotions.</li>
+            <li>Analyzing website performance and usage trends.</li>
+        </ul>
+
+        <h3>3. Data Security</h3>
+        <p>We implement robust security measures to protect your personal information from unauthorized access, alteration, or disclosure. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security.</p>
+
+        <h3>4. Sharing Your Information</h3>
+        <p>We do not sell or rent your personal information. We may share your data with trusted third parties for the following purposes:</p>
+        <ul>
+            <li>Service provision and website maintenance.</li>
+            <li>Compliance with legal requirements.</li>
+            <li>Protection against fraudulent or illegal activities.</li>
+        </ul>
+
+        <h3>5. Your Rights</h3>
+        <p>You have the right to access, update, or delete your personal information. You may also opt out of receiving marketing communications by following the instructions provided in our emails or contacting us directly.</p>
+
+        <h3>6. Changes to This Policy</h3>
+        <p>We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. Any updates will be posted on this page, and we encourage you to review it regularly.</p>
+
+        <h3>7. Contact Us</h3>
+        <p>If you have questions or concerns about this Privacy Policy or our data practices, please contact us at privacy@meadowlands.com.</p>
+    </section>
+</div>
+
+<footer>
+        <div class="footer-lines">
+            <div class="line long-line"></div>
+            <div class="line short-line"></div>
+        </div>
+        <div class="footer-logo">
+            <a href="#"><img src="logo.png" alt="Katrina"></a>
+        </div>
+        <div class="footer-lines-below">
+            <div class="line below-line"></div>
+        </div>
+        <ul>
+            
+            
+			<li><a href="TAS.html">Terms of Service</a></li>
+			<li><a href="FAQs.html">FAQ</a></li>
+        </ul>
+        <p>&copy; 2024 MeadowLands. All rights reserved.</p>
+    </footer>
+
+
+</body>
+</html>

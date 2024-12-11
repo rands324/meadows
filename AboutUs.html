@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEADOWLANDS | About Us</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+      background-color: #868752;
+      background: #001e01;
+      padding-bottom: 40px;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      padding: 30px;
+      z-index: 10;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Garamond', serif;
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #f3d46d 10%, #ffd700 50%, #f1c04d 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      margin-right: 20px;
+    }
+
+    .logo a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .menu {
+      display: flex;
+      padding: 20px;
+      gap: 30px;
+      margin-right: auto;
+      color:white;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu a:hover {
+      opacity: 1;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 15px;
+      margin-left: 20px;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #001e01;
+      color: #f3d46d;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button.primary {
+      background-color: #f3d46d;
+      color: #001e01;
+    }
+
+    .button.primary:hover {
+      background-color: #f3d46d;
+      color: #001e01;
+      transform: scale(1.05);
+    }
+
+    .button:hover {
+      background-color: #f0f0f0;
+      color: #557a63;
+    }
+
+    .content {
+      padding-top: 150px;
+      display: grid;
+      gap: 20px;
+      grid-template-areas:
+        "img1 text1"
+        "text2 img2";
+      grid-template-columns: 1fr 1fr;
+      margin: 0 auto;
+      width: 90%;
+    }
+
+    .image-box img {
+      width: 100%;
+      height: auto;
+      display: block;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+      border-radius: 10px;
+    }
+
+    .text-box {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+    }
+
+    .text-box p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="index.html">MEADOWLANDS</a>
+    </div>
+    <nav class="menu">
+      <a href="AboutUs.html">About Us</a>|
+      <a href="Contacts.html">Contacts</a>|
+      <a href="Agents.html">Agents</a>
+    </nav>
+    <div class="auth-buttons">
+      <a href="Log In.html" class="button">Log In</a>
+      <a href="Sign Up.html" class="button primary">Sign Up</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="image-box">
+      <img src="mainlogo.jpeg" alt="lemaw">
+    </div>
+    <div class="text-box">
+      <p>For over 11 years, Meadowlands has been your trusted partner in real estate, helping families find the perfect place to call home. As we approach our 12th year, we are proud to reflect on the thousands of happy clients we’ve served, and we’re more committed than ever to improving our services.</p>
+      <p>At Meadowlands, we don’t just build houses — we create thriving communities where memories are made. Looking ahead, we promise to keep innovating, enhancing our services, and providing you with unmatched value and care for decades to come.</p>
+      <p>Looking ahead, we promise to keep innovating, enhancing our services, and providing you with unmatched value and care for decades to come. As the real estate landscape evolves, Meadowlands will continue to be your reliable guide, offering expert advice and thoughtful recommendations.</p>
+      <p>Thank you for being part of the Meadowlands journey. Together, let’s continue to build a brighter future.</p>
+      <p><strong>Your comfort is what we deliver. We are Meadowlands.</strong></p>
+    </div>
+
+    <div class="text-box">
+      <p><strong>Greetings from the Meadowlands Team!</strong></p>
+      <p>At Meadowlands, we are proud to have a team of dedicated professionals who are passionate about helping you find your dream home. Our team, Liwen, John, William, Randee, and Harvy are committed to ensuring that your experience with us is nothing short of exceptional.</p>
+      <p>With years of expertise and a deep understanding of the real estate market, we are here to guide you through every step of your journey. Whether you’re buying your first home, investing in property, or simply seeking guidance, we promise to offer you personalized service, expert advice, and unwavering support.</p>
+      <p>As we continue to grow, we are more dedicated than ever to making your dreams a reality. Thank you for trusting us — we look forward to the opportunity to serve you for many more years to come!</p>
+    </div>
+    <div class="image-box">
+      <img src="bellaup.jpeg" alt="edi wow">
+    </div>
+  </div>
+</body>
+</html>

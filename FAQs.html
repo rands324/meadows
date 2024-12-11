@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> FAQ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures full height of the viewport */
+        }
+
+        .container {
+            display: flex;
+            flex: 1; /* Allow content to grow */
+            overflow: hidden;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            color: black;
+            left: 0;
+            width: 100%;
+            height: 90px;
+            background-color: #001e01;
+            display: flex;
+            align-items: center;
+            padding: 40px; /* Increased padding */
+            z-index: 10;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Garamond', serif;
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(90deg, #f3d46d 10%, #ffd700 50%, #f1c04d 90%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-right: 20px;
+        }
+
+        .menu {
+            display: flex;
+            padding: 20px;
+            gap: 30px;
+            color: white;
+            margin-right: auto;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu a:hover {
+            opacity: 1;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            margin-left: 20px;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: white; /* Deep green */
+            color: black;
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button.primary {
+            background-color: #f3d46d; /* Gold */
+            color: #001e01; /* Deep green text */
+        }
+
+        .button.primary:hover {
+            background-color: #f3d46d; /* Gold on hover */
+            color: #001e01; /* Deep green text */
+            transform: scale(1.05); /* Slight enlargement on hover */
+        }
+
+        .button:hover {
+            background-color: #f0f0f0;
+            color: #557a63;
+        }
+
+        /* Sidebar */
+        .sidenav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh; /* Full height of the screen */
+            width: 200px;
+            background-color: #2F4F39;
+            overflow-x: hidden;
+            padding-top: 100px; /* Adjust the space at the top */
+            border-right: 1px solid #fff; /* Horizontal line separating sidebar */
+        }
+
+        .sidenav a {
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            background-color: #3cb371;
+        }
+
+        /* Content */
+		.content {
+			margin-left: 220px; /* Ensures content doesn't overlap with the sidebar */
+			padding: 20px;
+			padding-top: 90px; /* Adds space to prevent content being covered by the header */
+			flex-grow: 1;
+			overflow-y: auto;
+		}
+
+
+        section {
+            padding: 20px 0; /* Adds padding to the top and bottom of each section */
+        }
+
+        section h2 {
+            margin-bottom: 10px;
+            color: #001e01; /* Deep green color for the section titles */
+        }
+
+        section p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #333; /* Slightly darker text for readability */
+        }
+
+        section ul {
+            margin-left: 20px;
+            list-style: disc;
+        }
+
+        section ul li {
+            margin-bottom: 8px;
+        }
+
+        /* Separation lines between sections */
+        section:not(:last-of-type) {
+            border-bottom: 2px solid #f3d46d; /* Golden line between sections */
+        }
+
+        footer {
+            background-color:#001e01;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        footer .footer-logo a {
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center; /* Centers the text and image vertically */
+            gap: 10px; /* Space between the image and text */
+        }
+
+        .footer-lines {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-lines .line {
+            height: 1px; /* Thickness of the line */
+            background-color: #f3d46d; /* Line color */
+            margin: 0 auto; /* Centers the line */
+        }
+
+        .footer-lines .long-line {
+            width: 60%; /* Adjust the length of the first line */
+            margin-bottom: 15px; /* Space between the two lines */
+        }
+
+        .footer-lines .short-line {
+            width: 40%; /* Adjust the length of the second line */
+        }
+
+        footer .footer-logo img {
+            width: 300px; /* Set a fixed width for the logo */
+            height: auto; /* Keeps the aspect ratio intact */
+        }
+
+        .footer-lines-below {
+            text-align: center;
+            margin-top: 1px; /* Space between the logo and the line below */
+            margin-bottom: 10px;
+        }
+
+        .footer-lines-below .below-line {
+            height: 1px; /* Thickness of the line */
+            background-color:#f3d46d; /* Line color */
+            width: 25%; /* Adjust the width of the line */
+            margin: 0 auto; /* Centers the line */
+        }
+
+        footer ul {
+            list-style: none;
+            margin-top: 1px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        footer ul li a:hover {
+            color: #d9a541;
+        }
+
+        footer p {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* Smooth scroll animation */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+   <header>
+       <div class="left-section">
+      <div class="header">
+        <a href="index.html" class="logo">MEADOWLANDS</a>
+        <nav class="menu">
+          <a href="AboutUs.html">About Us</a>| 
+          <a href="Contacts.html">Contacts</a>| 
+          <a href="Agents.html">Agents</a>
+        </nav>
+        <div class="auth-buttons">
+          <a href="Log In.html" class="button">Log In</a>
+          <a href="Sign Up.html" class="button primary">Sign Up</a>
+        </div>
+      </div>
+	 </div>
+    </header>
+
+    <!-- Side Navigation -->
+    <div class="sidenav">
+        <a href="#general">General Information</a>
+        <a href="#team">Our Team</a>
+        <a href="#buying-selling">Buying & Selling Homes</a>
+        <a href="#investment">Investment & Innovation</a>
+        <a href="#contact">Contact & Support</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <section id="general">
+            <h2>General Information</h2>
+            <p><strong>1. What is Meadowlands?</strong><br>
+            Meadowlands is a trusted real estate partner with over 11 years of experience helping families find the perfect place to call home.</p>
+            <p><strong>2. What services does Meadowlands offer?</strong><br>
+            We offer a range of real estate services, including:  
+            <ul>
+                <li>Helping families buy and sell homes</li>
+                <li>Investment property consultations</li>
+                <li>Personalized support and expert advice tailored to your unique needs</li>
+            </ul></p>
+            <p><strong>3. What sets Meadowlands apart?</strong><br>
+            At Meadowlands, we don’t just build houses — we create communities.</p>
+        </section>
+
+        <section id="team">
+            <h2>Our Team</h2>
+            <p><strong>Liwen</strong>: Expert in market trends and property valuations.</p>
+            <p><strong>John</strong>: Skilled negotiator with a client-first approach.</p>
+            <p><strong>William</strong>: Specialist in community planning and home customization.</p>
+            <p><strong>Randee</strong>: Dedicated to guiding first-time buyers.</p>
+            <p><strong>Harvy</strong>: Focused on investment opportunities and client relationships.</p>
+        </section>
+
+        <section id="buying-selling">
+            <h2>Buying & Selling Homes</h2>
+            <p><strong>How do I get started?</strong><br>
+            Contact us to discuss your needs and preferences.</p>
+            <p><strong>Can Meadowlands help sell my property?</strong><br>
+            Yes! We offer tailored strategies to market your property effectively.</p>
+            <p><strong>Do you assist first-time homebuyers?</strong><br>
+            Yes, we provide personalized support for first-time buyers.</p>
+        </section>
+
+        <section id="investment">
+            <h2>Investment & Innovation</h2>
+            <p><strong>Does Meadowlands provide investment advice?</strong><br>
+            Yes, we offer expert recommendations and strategies to maximize returns.</p>
+            <p><strong>How is Meadowlands innovating?</strong><br>
+            We continuously enhance our services and leverage the latest trends.</p>
+        </section>
+
+        <section id="contact">
+            <h2>Contact & Support</h2>
+            <p><strong>How can I contact Meadowlands?</strong><br>
+            Reach out via our <a href="contact.html">Contact Page</a> or call us at <strong>+63 999-8888-777</strong>.</p>
+            <p><strong>Where are you located?</strong><br>
+            Visit us at <strong>Lipa, Batangas]</strong>.</p>
+            <p><strong>What should I do if I have more questions?</strong><br>
+            Contact us for personalized support and expert advice.</p>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-lines">
+            <div class="line long-line"></div>
+            <div class="line short-line"></div>
+        </div>
+        <div class="footer-logo">
+            <a href="#"><img src="logo.png" alt="Katrina"></a>
+        </div>
+        <div class="footer-lines-below">
+            <div class="line below-line"></div>
+        </div>
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            
+        </ul>
+        <p>&copy; 2024 MeadowLands. All rights reserved.</p>
+    </footer>
+</body>
+</html>

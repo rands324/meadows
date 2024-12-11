@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEADOWLANDS | Agents</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+      background-color: #001e01;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header {
+      position: fixed;
+      top: 0;
+      color: white;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      background-color: rgba(0, 0, 0, 0.2);
+      display: flex;
+      align-items: center;
+      padding: 30px;
+      z-index: 10;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Garamond', serif;
+      font-size: 2rem;
+      font-weight: bold;
+      background: linear-gradient(90deg, #f3d46d 10%, #ffd700 50%, #f1c04d 90%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      margin-right: 20px;
+    }
+
+    .menu {
+      display: flex;
+      padding: 20px;
+      gap: 30px;
+      color: white;
+      margin-right: auto;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 0.9rem;
+      opacity: 0.9;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu a:hover {
+      opacity: 1;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 15px;
+      margin-left: 20px;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
+
+    .button {
+      padding: 10px 20px;
+      background-color: #001e01;
+      color: #f3d46d;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button.primary {
+      background-color: #f3d46d;
+      color: #001e01;
+    }
+
+    .button.primary:hover {
+      background-color: #f3d46d;
+      color: #001e01;
+      transform: scale(1.05);
+    }
+
+    .button:hover {
+      background-color: #f0f0f0;
+      color: #557a63;
+    }
+
+    .image-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 100px 20px 20px; /* Add padding to avoid overlap with the header */
+    }
+
+    .image-container {
+      position: relative; /* Make the container relative for absolute positioning of text */
+      flex: 0 0 calc(20% - 20px); /* 5 images per row with spacing */
+      text-align: center;
+      background-color: #444; /* Dark gray background */
+      border-radius: 10px; /* Rounded corners */
+      padding: 10px; /* Add padding */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Optional: shadow effect */
+      transition: transform 0.3s ease; /* Transition for the zoom effect */
+    }
+
+    .image-container:hover {
+      transform: scale(1.05); /* Zoom effect on hover */
+    }
+
+    .image-container img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: 5px; /* Round corners of the image */
+      transition: filter 0.3s ease; /* Transition for blur effect */
+    }
+
+    /* Blur effect and message for unavailable agents */
+    .image-container.unavailable img {
+      transition: filter 0.3s ease; /* Ensure smooth transition */
+    }
+
+    .image-container.unavailable:hover img {
+      filter: blur(4px); /* Apply blur effect on hover */
+    }
+
+    .image-container.unavailable .unavailable-message {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(0, 0 , 0.7); /* Semi-transparent background */
+      color: white;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 5px; /* Round corners of the message box */
+      opacity: 0; /* Initially hidden */
+      transition: opacity 0.3s ease; /* Transition for fade-in effect */
+    }
+
+    .image-container.unavailable:hover .unavailable-message {
+      opacity: 1; /* Show message on hover */
+    }
+
+    .image-container p {
+      color: white; /* Text color */
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Text shadow for better visibility */
+      transition: color 0.3s ease; /* Transition for text color */
+      margin-top: 10px; /* Add margin to space text from the image */
+    }
+
+    .image-container.unavailable:hover p {
+      color: white; /* Ensure text remains white on hover */
+    }
+
+    .about-us {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: transparent;
+    }
+
+    .about-us h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: white; /* Change heading color to white */
+    }
+
+    .about-us p {
+      font-size: 1.2rem;
+      color: white; /* Change paragraph color to white */
+    }
+
+    .contacts {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* Creates 5 equal-width columns */
+      gap: 20px; /* Space between the columns */
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .agent {
+      padding: 10px;
+      background-color: rgba(255, 255, 255, 0.1); /* Slight background for contrast */
+      border-radius: 5px;
+      text-align: center; /* Center align the text within each column */
+    }
+
+    .agent p {
+      margin: 5px 0;
+      color: white; /* Ensure text is visible */
+      font-size: 1rem;
+    }
+
+    .current-agents {
+      text-align: center;
+      font-size: 2rem;
+      color: white; /* Change text color to white */
+      margin: 20px 0; /* Add margin for spacing */
+    }
+
+    select {
+      padding: 10px;
+      margin: 20px 0; /* Increased margin for spacing */
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    @media (max-width: 768px) {
+      .contacts {
+        grid-template-columns: repeat(2, 1fr); /* Switch to 2 columns */
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contacts {
+        grid-template-columns: 1fr; /* Single column for small screens */
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <a href="index.html" class="logo">MEADOWLANDS</a>
+      <nav class="menu">
+            <a href="AboutUs.html">About Us</a>|
+            <a href="Contacts.html">Contacts</a>|
+            <a href="Agents.html">Agents</a>
+      </nav>
+      <div class="auth-buttons">
+        <a href="Log In.html" class="button">Login</a>
+        <a href="Sign Up.html" class="button primary">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Current Agents -->
+    <div class="current-agents">
+      <!-- Add any dynamic content for the current agents section here -->
+    </div>
+
+    <!-- Image Grid -->
+    <div class="image-grid">
+      <div class="image-container">
+        <img src="barnuevo.jpg" alt="Image 1">
+        <p>Barnuevo, Liwen Aibud</p>
+      </div>
+      <div class="image-container unavailable">
+        <img src="culala.png" alt="Image 2">
+        <p>Culala, John Paul</p>
+        <div class="unavailable-message">Not available at the moment</div>
+      </div>
+      <div class="image-container">
+        <img src="curioso.jpg" alt="Image 3">
+        <p>Curioso, Randee</p>
+      </div>
+      <div class="image-container unavailable">
+        <img src="perez.jpg" alt="Image 4">
+        <p>Perez, William</p>
+        <div class="unavailable-message">Not available at the moment</div>
+      </div>
+      <div class="image-container unavailable">
+        <img src="himor.jpg" alt="Image 5">
+        <p>Himor, Harvy</p>
+        <div class="unavailable-message">Not available at the moment</div>
+      </div>
+    </div>
+
+    <!-- About Us -->
+    <div class="about-us">
+      <h2>OUR TEAM</h2>
+      <p>Welcome to Meadowlands!</p>
+      <p>Is this your first time here? We are dedicated to providing the best services for your property management needs. Our team is committed to ensuring that your property is safe.</p>
+      <br>
+      <p>The following agents may either be available or currently occupied. You can find their contact details below:</p>
+      <div class="contacts">
+        <div class="agent">
+          <p><strong>Barnuevo, Liwen Aibud</strong></p>
+          <p>Phone: +1-555-123-4567</p>
+          <p>Email: liwen.barnuevo@example.com</p>
+        </div>
+        <div class="agent">
+          <p><strong>Curioso, Randee</strong></p>
+          <p>Phone: +1-555-234-5678</p>
+          <p>Email: randee.curioso@example.com</p>
+        </div>
+        <div class="agent">
+          <p><strong>Culala, John Paul</strong></p>
+          <p>Phone: +1-555-345-6789</p>
+          <p>Email: johnpaul.culala@example.com</p>
+        </div>
+        <div class="agent">
+          <p><strong>Perez, William</strong></p>
+          <p>Phone: +1-555-456-7890</p>
+          <p>Email: william.perez@example.com</p>
+        </div>
+        <div class="agent">
+          <p><strong>Himor, Harvy</strong></p>
+          <p>Phone: +1-555-567-8901</p>
+          <p>Email: harvy.himor@example.com</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
